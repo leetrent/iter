@@ -1,4 +1,4 @@
-fn print_elements(elements: &Vec<String>) {
+fn print_elements(elements: &[String]) {
     elements.iter()
     .map(|el| format!("{} {}", el, el)) // iterator adapter (does not call "next")
     .for_each(|el| println!("{}", el)); // iterator consumer (calls "next")
@@ -12,5 +12,5 @@ fn main() {
         String::from("blue")
     ];
 
-    print_elements(&colors);
+    print_elements(&colors[1..3]);
 }

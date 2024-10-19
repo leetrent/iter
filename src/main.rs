@@ -1,16 +1,18 @@
-fn print_elements(elements: &[String]) {
-    elements.iter()
-    .map(|el| format!("{} {}", el, el)) // iterator adapter (does not call "next")
-    .for_each(|el| println!("{}", el)); // iterator consumer (calls "next")
+fn shorten_strings(elements: &mut Vec<String>) {
+    elements.iter_mut().for_each(|el| el.truncate(1));
 }
 
-
 fn main() {
-    let colors = vec! [
+    let mut colors = vec! [
         String::from("red"),
         String::from("green"),
         String::from("blue")
     ];
 
-    print_elements(&colors[1..3]);
+    // BEFORE
+    println!("{:#?}", colors);
+    shorten_strings(&mut colors);
+
+    // AFTER
+    println!("{:#?}", colors)
 }

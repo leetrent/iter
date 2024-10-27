@@ -1,10 +1,9 @@
-fn explode(elements: &[String]) -> Vec<Vec<String>> {
+fn find_color_or(elements: &[String], search: &str, fallback: &str) -> String {
     elements
     .iter()
-    .map(
-        |el| el.chars().map(|c| c.to_string()).collect()
+    .find(|el| el.contains(search))
+    .map_or(String::from(fallback), |el| el.to_string()
     )
-    .collect()
 }
 
 fn main() {
@@ -15,7 +14,10 @@ fn main() {
     ];
     println!("Original: {:#?}", colors);
 
-    let exploded = explode(&colors);
-    println!("Exploded: {:#?}", exploded);
+    let found_color = find_color_or(&colors, "re", "Orang");
+    println!("found_color: {:#?}", found_color);
+
+    let not_found_color = find_color_or(&colors, "abc", "Orange");
+    println!("not_found_color: {:#?}", not_found_color);
 }
 

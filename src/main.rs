@@ -6,20 +6,22 @@ struct Account {
 fn main() {
     let accounts: Vec<Account> = vec![
         Account { balance: 0 },
-        Account { balance: 10 }
+        Account { balance: 10 },
+        Account { balance: -15 },
+        Account { balance: 27 },
+        Account { balance: -3 }
     ];
     
-    // TODO: getting a compiler error around the 'collect' call
-    // Remember: 'collect' can be used to gather values into 
-    // many kinds of data structures. We have to explicitly 
-    // tell collect what kind of structure we want by adding a 
-    // type annotation
-    let balances = accounts
+    // TODO: Add in a call to the 'filter' iterator adaptor.
+    // Find accounts that have a balance less than 0.
+    // You can find documentation on 'filter' here:
+    // https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter
+    let negative_accounts = accounts
         .iter()
-        .map(|account| account.balance)
-        .collect::<Vec<i32>>();
+        .filter(|acct| acct.balance < 0)
+        .collect::<Vec<_>>();
         
-    println!("Balances: {:#?}", balances);
+    println!("Accounts with negative balance: {:#?}", negative_accounts);
 }
 
 

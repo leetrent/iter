@@ -1,23 +1,30 @@
-fn find_color_or(elements: &[String], search: &str, fallback: &str) -> String {
-    elements
-    .iter()
-    .find(|el| el.contains(search))
-    .map_or(String::from(fallback), |el| el.to_string()
-    )
+#[derive(Debug)]
+struct Account {
+    balance: i32
 }
 
 fn main() {
-    let colors = vec! [
-        String::from("red"),
-        String::from("green"),
-        String::from("blue")
+    let accounts: Vec<Account> = vec![
+        Account { balance: 0 },
+        Account { balance: 10 }
     ];
-    println!("Original: {:#?}", colors);
-
-    let found_color = find_color_or(&colors, "re", "Orang");
-    println!("found_color: {:#?}", found_color);
-
-    let not_found_color = find_color_or(&colors, "abc", "Orange");
-    println!("not_found_color: {:#?}", not_found_color);
+    
+    // TODO: getting a compiler error around the 'collect' call
+    // Remember: 'collect' can be used to gather values into 
+    // many kinds of data structures. We have to explicitly 
+    // tell collect what kind of structure we want by adding a 
+    // type annotation
+    let balances = accounts
+        .iter()
+        .map(|account| account.balance)
+        .collect::<Vec<i32>>();
+        
+    println!("Balances: {:#?}", balances);
 }
+
+
+
+
+
+
 
